@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My weekly schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100">
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <header class="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <nav class="mb-4 flex flex-wrap gap-2" aria-label="Page navigation">
+                    <a href="main.html" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                        <span aria-hidden="true">←</span> Home
+                    </a>
+                    <a href="history.html" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400">
+                        History
+                    </a>
+                </nav>
+                <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">Make time for what matters</p>
+                <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">My weekly schedule</h1>
+                <p class="mt-2 max-w-xl text-slate-400">A flexible starting point for your everyday routine and gym sessions. Add, check off, or remove anything to make it yours.</p>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-900 px-5 py-4 sm:min-w-52">
+                <p class="text-sm text-slate-400">Gym sessions this week</p>
+                <p class="mt-1 text-2xl font-semibold"><span id="gym-count">0</span><span class="ml-1 text-base font-normal text-slate-500">planned</span></p>
+            </div>
+        </header>
+
+        <div id="schedule-message" class="mb-5 hidden rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-200" role="status"></div>
+
+        <section class="mb-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6" aria-labelledby="add-title">
+            <div class="mb-5">
+                <h2 id="add-title" class="text-lg font-semibold">Add to your schedule</h2>
+                <p class="mt-1 text-sm text-slate-400">Fit your real commitments around your workouts.</p>
+            </div>
+            <form id="activity-form" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+                <label class="text-sm text-slate-300">
+                    Activity
+                    <input id="activity-title" name="title" required maxlength="60" placeholder="e.g. Work, class, or leg day" class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-slate-100 placeholder:text-slate-600 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/20">
+                </label>
+                <label class="text-sm text-slate-300">
+                    Day
+                    <select id="activity-day" name="day" class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-slate-100 focus:border-cyan-400 focus:outline-none">
+                    </select>
+                </label>
+                <div class="text-sm text-slate-300">
+                    <p class="mb-2">Start time</p>
+                    <div id="activity-time-controls"></div>
+                </div>
+                <label class="text-sm text-slate-300">
+                    Type
+                    <select id="activity-type" name="type" class="mt-2 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-slate-100 focus:border-cyan-400 focus:outline-none">
+                        <option value="life">Life</option>
+                        <option value="gym">Gym</option>
+                    </select>
+                </label>
+                <button type="submit" class="self-end rounded-xl bg-cyan-400 px-4 py-2.5 font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:ring-offset-2 focus:ring-offset-slate-900">Add activity</button>
+            </form>
+        </section>
+
+        <section aria-labelledby="week-title">
+            <div class="mb-4 flex items-center justify-between">
+                <h2 id="week-title" class="text-lg font-semibold">Your week</h2>
+                <p class="text-xs text-slate-500">Suggested times — adjust to your real routine</p>
+            </div>
+            <div id="week-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+        </section>
+        <p class="mt-6 text-center text-xs text-slate-500">Your schedule is saved in this browser on this device.</p>
+    </main>
+    <script src="Schedule.js"></script>
+</body>
+</html>

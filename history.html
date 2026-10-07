@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity history</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100">
+    <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+        <header class="mb-8">
+            <a href="main.html" class="mb-5 inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                <span aria-hidden="true">←</span> Home
+            </a>
+            <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">Look how far you have come</p>
+            <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Your history</h1>
+            <p class="mt-2 text-slate-400">Review finished runs and activities you have completed from your weekly schedule.</p>
+        </header>
+
+        <div id="history-message" class="mb-5 hidden rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-200" role="status" aria-live="polite"></div>
+
+        <section class="mb-8" aria-labelledby="schedule-history-title">
+            <div class="mb-4 flex flex-wrap items-end justify-between gap-2">
+                <div>
+                    <h2 id="schedule-history-title" class="text-xl font-semibold">Weekly schedule history</h2>
+                    <p class="mt-1 text-sm text-slate-500">Activities appear here when you check them off in your schedule.</p>
+                </div>
+                <a href="Schedule.html" class="rounded-xl border border-slate-700 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-violet-400 hover:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400">Open schedule</a>
+            </div>
+            <section class="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label="Completed schedule totals">
+                <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+                    <p class="text-sm text-slate-400">Completed activities</p>
+                    <p id="completed-activities" class="mt-1 text-2xl font-semibold tabular-nums">0</p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+                    <p class="text-sm text-slate-400">Gym sessions</p>
+                    <p id="completed-gym" class="mt-1 text-2xl font-semibold tabular-nums">0</p>
+                </div>
+                <div class="col-span-2 rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:col-span-1">
+                    <p class="text-sm text-slate-400">Life activities</p>
+                    <p id="completed-life" class="mt-1 text-2xl font-semibold tabular-nums">0</p>
+                </div>
+            </section>
+            <div id="schedule-history-list" class="space-y-2"></div>
+        </section>
+
+        <section class="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Running totals">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+                <p class="text-sm text-slate-400">Total runs</p>
+                <p id="total-runs" class="mt-1 text-2xl font-semibold tabular-nums">0</p>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+                <p class="text-sm text-slate-400">Total distance</p>
+                <p class="mt-1 text-2xl font-semibold tabular-nums"><span id="total-distance">0.00</span> <span class="text-sm font-normal text-slate-400">km</span></p>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+                <p class="text-sm text-slate-400">Calories burned</p>
+                <p class="mt-1 text-2xl font-semibold tabular-nums"><span id="total-calories">0</span> <span class="text-sm font-normal text-slate-400">kcal</span></p>
+            </div>
+            <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4">
+                <p class="text-sm text-slate-400">Longest run</p>
+                <p class="mt-1 text-2xl font-semibold tabular-nums"><span id="longest-run">0.00</span> <span class="text-sm font-normal text-slate-400">km</span></p>
+            </div>
+        </section>
+
+        <section aria-labelledby="runs-title">
+            <div class="mb-4 flex flex-wrap items-end justify-between gap-2">
+                <div>
+                    <h2 id="runs-title" class="text-xl font-semibold">Running history</h2>
+                    <p class="mt-1 text-sm text-slate-500">Newest runs appear first. Pace is shown as minutes per kilometre.</p>
+                </div>
+                <a href="Running.html" class="rounded-xl bg-cyan-400 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200">Start a run</a>
+            </div>
+            <div id="runs-list" class="space-y-3"></div>
+        </section>
+
+        <p class="mt-8 text-center text-xs text-slate-500">Your run and schedule history is stored in this browser and is not synced to other devices.</p>
+    </main>
+    <script src="history.js"></script>
+</body>
+</html>
