@@ -7,11 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
+    <header class="border-b border-slate-800 bg-slate-950/90">
+        <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            <a href="main.html" class="text-lg font-bold tracking-tight text-slate-100 transition hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                <span class="text-cyan-400">Fit</span> &amp; Life
+            </a>
+            <nav class="flex flex-wrap gap-2 text-sm" aria-label="Site navigation">
+                <a href="Running.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">Running</a>
+                <a href="Schedule.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400">Schedule</a>
+                <a href="history.html" aria-current="page" class="rounded-lg px-3 py-2 text-amber-300 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-400">History</a>
+            </nav>
+        </div>
+    </header>
     <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
         <header class="mb-8">
-            <a href="main.html" class="mb-5 inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
-                <span aria-hidden="true">←</span> Home
-            </a>
             <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">Look how far you have come</p>
             <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Your history</h1>
             <p class="mt-2 text-slate-400">Review finished runs and activities you have completed from your weekly schedule.</p>
@@ -76,6 +85,12 @@
 
         <p class="mt-8 text-center text-xs text-slate-500">Your run and schedule history is stored in this browser and is not synced to other devices.</p>
     </main>
+    <footer class="border-t border-slate-800 bg-slate-950">
+        <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <a href="main.html" class="font-medium transition hover:text-cyan-300">Fit &amp; Life Planner</a>
+            <p>Plan your week. Move at your own pace.</p>
+        </div>
+    </footer>
     <script src="history.js"></script>
 </body>
 </html>

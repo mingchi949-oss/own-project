@@ -7,17 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
+    <header class="border-b border-slate-800 bg-slate-950/90">
+        <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="main.html" class="text-lg font-bold tracking-tight text-slate-100 transition hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                <span class="text-cyan-400">Fit</span> &amp; Life
+            </a>
+            <nav class="flex flex-wrap gap-2 text-sm" aria-label="Site navigation">
+                <a href="Running.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">Running</a>
+                <a href="Schedule.html" aria-current="page" class="rounded-lg px-3 py-2 text-violet-300 transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-violet-400">Schedule</a>
+                <a href="history.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">History</a>
+            </nav>
+        </div>
+    </header>
     <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <header class="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-                <nav class="mb-4 flex flex-wrap gap-2" aria-label="Page navigation">
-                    <a href="main.html" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
-                        <span aria-hidden="true">←</span> Home
-                    </a>
-                    <a href="history.html" class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400">
-                        History
-                    </a>
-                </nav>
                 <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">Make time for what matters</p>
                 <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">My weekly schedule</h1>
                 <p class="mt-2 max-w-xl text-slate-400">A flexible starting point for your everyday routine and gym sessions. Add, check off, or remove anything to make it yours.</p>
@@ -33,7 +37,7 @@
         <section class="mb-8 rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6" aria-labelledby="add-title">
             <div class="mb-5">
                 <h2 id="add-title" class="text-lg font-semibold">Add to your schedule</h2>
-                <p class="mt-1 text-sm text-slate-400">Fit your real commitments around your workouts.</p>
+                <p class="mt-1 text-sm text-slate-400">Fit your real commitments around your workouts. Click Complete day to save that day's activities in history.</p>
             </div>
             <form id="activity-form" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
                 <label class="text-sm text-slate-300">
@@ -69,6 +73,12 @@
         </section>
         <p class="mt-6 text-center text-xs text-slate-500">Your schedule is saved in this browser on this device.</p>
     </main>
+    <footer class="border-t border-slate-800 bg-slate-950">
+        <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+            <a href="main.html" class="font-medium transition hover:text-cyan-300">Fit &amp; Life Planner</a>
+            <p>Plan your week. Move at your own pace.</p>
+        </div>
+    </footer>
     <script src="Schedule.js"></script>
 </body>
 </html>

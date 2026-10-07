@@ -52,24 +52,31 @@ function saveActivities() {
     }
 }
 
-function recordCompletion(activity) {
+function recordCompletions(completedActivities) {
+    if (completedActivities.length === 0) {
+        return;
+    }
+
     try {
         const saved = localStorage.getItem(completionHistoryKey);
         const completions = saved === null ? [] : JSON.parse(saved);
         if (!Array.isArray(completions)) {
             throw new Error("Saved schedule history has an unexpected format.");
         }
-        completions.push({
-            id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-            completedAt: new Date().toISOString(),
-            title: activity.title,
-            day: activity.day,
-            time: activity.time,
-            type: activity.type
-        });
+        const completedAt = new Date().toISOString();
+        for (const activity of completedActivities) {
+            completions.push({
+                id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                completedAt,
+                title: activity.title,
+                day: activity.day,
+                time: activity.time,
+                type: activity.type
+            });
+        }
         localStorage.setItem(completionHistoryKey, JSON.stringify(completions));
     } catch {
-        showMessage("This activity was checked off, but its completion could not be saved to history.");
+        showMessage("Activities were marked complete, but their completion could not be saved to history.");
     }
 }
 
@@ -184,20 +191,6 @@ function createActivityRow(activity) {
     const row = document.createElement("li");
     row.className = "flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/70 p-3";
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = activity.done;
-    checkbox.setAttribute("aria-label", `Mark ${activity.title} ${activity.done ? "not done" : "done"}`);
-    checkbox.className = "mt-1 size-4 shrink-0 accent-cyan-400";
-    checkbox.addEventListener("change", () => {
-        activity.done = checkbox.checked;
-        saveActivities();
-        if (activity.done) {
-            recordCompletion(activity);
-        }
-        renderSchedule();
-    });
-
     const details = document.createElement("div");
     details.className = "min-w-0 flex-1";
     const title = document.createElement("p");
@@ -207,6 +200,12 @@ function createActivityRow(activity) {
     meta.className = "mt-1 text-xs text-slate-500";
     meta.textContent = `${formatTime(activity.time)} · ${activity.type === "gym" ? "Gym" : "Life"}`;
     details.append(title, meta);
+    if (activity.done) {
+        const status = document.createElement("p");
+        status.className = "mt-1 text-xs font-medium text-emerald-300";
+        status.textContent = "Completed";
+        details.append(status);
+    }
 
     const editButton = document.createElement("button");
     editButton.type = "button";
@@ -259,8 +258,25 @@ function createActivityRow(activity) {
         renderSchedule();
     });
 
-    row.append(checkbox, details, editButton, removeButton);
+    row.append(details, editButton, removeButton);
     return row;
+}
+
+function toggleDayCompletion(dayActivities) {
+    if (dayActivities.length === 0) {
+        return;
+    }
+
+    const shouldCompleteDay = dayActivities.some((activity) => !activity.done);
+    const newlyCompleted = dayActivities.filter((activity) => !activity.done);
+    for (const activity of dayActivities) {
+        activity.done = shouldCompleteDay;
+    }
+    saveActivities();
+    if (shouldCompleteDay) {
+        recordCompletions(newlyCompleted);
+    }
+    renderSchedule();
 }
 
 function renderSchedule() {
@@ -269,15 +285,29 @@ function renderSchedule() {
         const card = document.createElement("article");
         card.className = "rounded-2xl border border-slate-800 bg-slate-900 p-4";
 
-        const heading = document.createElement("h3");
-        heading.className = "mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-300";
-        heading.textContent = day;
-
-        const list = document.createElement("ul");
-        list.className = "space-y-2";
         const dayActivities = activities
             .filter((activity) => activity.day === day)
             .sort((first, second) => first.time.localeCompare(second.time));
+
+        const dayHeader = document.createElement("div");
+        dayHeader.className = "mb-3 flex items-center justify-between gap-2";
+        const heading = document.createElement("h3");
+        heading.className = "text-sm font-semibold uppercase tracking-wide text-cyan-300";
+        heading.textContent = day;
+
+        const completeDayButton = document.createElement("button");
+        completeDayButton.type = "button";
+        completeDayButton.textContent = dayActivities.length > 0 && dayActivities.every((activity) => activity.done)
+            ? "Undo day"
+            : "Complete day";
+        completeDayButton.disabled = dayActivities.length === 0;
+        completeDayButton.setAttribute("aria-label", `${completeDayButton.textContent} (${day})`);
+        completeDayButton.className = "shrink-0 rounded-lg bg-emerald-400 px-2 py-1.5 text-xs font-semibold text-slate-950 transition hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-200 disabled:cursor-not-allowed disabled:opacity-40";
+        completeDayButton.addEventListener("click", () => toggleDayCompletion(dayActivities));
+        dayHeader.append(heading, completeDayButton);
+
+        const list = document.createElement("ul");
+        list.className = "space-y-2";
 
         if (dayActivities.length === 0) {
             const empty = document.createElement("li");
@@ -290,7 +320,7 @@ function renderSchedule() {
             }
         }
 
-        card.append(heading, list);
+        card.append(dayHeader, list);
         weekGrid.append(card);
     }
     gymCount.textContent = activities.filter((activity) => activity.type === "gym").length;

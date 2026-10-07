@@ -7,7 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
-    <main class="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-4 py-16 sm:px-6">
+    <header class="border-b border-slate-800 bg-slate-950/90">
+        <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            <a href="main.html" class="text-lg font-bold tracking-tight text-slate-100 transition hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                <span class="text-cyan-400">Fit</span> &amp; Life
+            </a>
+            <nav class="flex flex-wrap gap-2 text-sm" aria-label="Site navigation">
+                <a href="Running.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">Running</a>
+                <a href="Schedule.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400">Schedule</a>
+                <a href="history.html" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">History</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mx-auto flex min-h-[calc(100vh-9rem)] max-w-5xl flex-col justify-center px-4 py-16 sm:px-6">
         <header class="mb-10">
             <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400">Your space, your pace</p>
             <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Fitness &amp; life planner</h1>
@@ -37,7 +50,14 @@
             </a>
         </nav>
 
-        <footer class="mt-10 text-sm text-slate-500">Choose a page to get started.</footer>
+        <p class="mt-10 text-sm text-slate-500">Choose a page to get started.</p>
     </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950">
+        <div class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <p>&copy; 2026 Fit &amp; Life Planner</p>
+            <p>Plan your week. Move at your own pace.</p>
+        </div>
+    </footer>
 </body>
 </html>
